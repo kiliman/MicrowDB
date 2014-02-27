@@ -142,6 +142,15 @@ namespace MicrowDB.Client
                             Json = json
                         };
                         _store.Connection.InsertOrReplace(document);
+
+                        // delete existing indexed entries for this document
+                        // get map for entity type
+                        var map = _store.GetIndexMapByEntityType(entry.Entity.GetType());
+                        DeleteIndexEntries(map, id);
+
+                        var result = (IndexResult)map.ApplyMap(entry.Entity);
+                        result.DocumentId = id;
+                        _store.Connection.Insert(result, map.ResultType);
                     }
                 }
 
@@ -152,6 +161,12 @@ namespace MicrowDB.Client
                 _store.Connection.Rollback();
                 throw;
             }
+        }
+
+        private void DeleteIndexEntries(IIndexMap map, string id)
+        {
+            var query = string.Format("delete from {0} where DocumentId=?", map.ResultType.Name);
+            _store.Connection.Execute(query, id);
         }
 
         public void Dispose()

@@ -8,5 +8,7 @@ namespace MicrowDB.Client
         ISQLiteConnection Connection { get; set; }
         IDocumentStore Initialize();
         IDocumentSession OpenSession();
+        void RegisterIndex<TEntity, TResult>(IndexMap<TEntity, TResult> map);
+        IIndexMap GetIndexMapByEntityType(Type entiyType);
     }
 }

@@ -15,6 +15,8 @@ namespace MicrowDB.Tests
         public void Setup()
         {
             _store = new InMemoryDocumentStore(new MvxWpfSqLiteConnectionFactory()).Initialize();
+
+            _store.RegisterIndex(new PersonIndexMap());
         }
 
         [TestFixtureTearDown]

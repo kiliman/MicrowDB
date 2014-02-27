@@ -1,6 +1,7 @@
 ﻿using System.Security;
 using Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf;
 using MicrowDB.Client;
+using MicrowDB.Tests.Models;
 using NUnit.Framework;
 
 namespace MicrowDB.Tests
@@ -15,5 +16,17 @@ namespace MicrowDB.Tests
             store.Initialize();
             Assert.IsNotNull(store.Connection);
         }
+
+        [Test]
+        public void CanRegisterIndex()
+        {
+            var store = new InMemoryDocumentStore(new MvxWpfSqLiteConnectionFactory()).Initialize();
+
+            store.RegisterIndex(new PersonIndexMap());
+
+            var map = store.GetIndexMapByEntityType(typeof (Person));
+            Assert.IsNotNull(map);
+        }
+
     }
 }

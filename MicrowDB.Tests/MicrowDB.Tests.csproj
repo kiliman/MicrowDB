@@ -58,10 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\CommunitySqlitePluginBootstrap.cs" />
+    <Compile Include="DocumentQueryTests.cs" />
     <Compile Include="DocumentSessionTests.cs" />
     <Compile Include="DocumentStoreTests.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PersonIndex.cs" />
+    <Compile Include="Models\PersonIndexMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
