@@ -118,7 +118,7 @@ namespace MicrowDB.Tests
         }
 
         [Test]
-        public void ModifyingDocumentAndCallingSaveChangesWillPersisteChanges()
+        public void ModifyingDocumentAndCallingSaveChangesWillPersistChanges()
         {
             var person = new Person
             {
@@ -156,7 +156,7 @@ namespace MicrowDB.Tests
         }
 
         [Test]
-        public void ModifyingDocumentAndNotCallingSaveChangesWillNotPersisteChanges()
+        public void ModifyingDocumentAndNotCallingSaveChangesWillNotPersistChanges()
         {
             var person = new Person
             {
